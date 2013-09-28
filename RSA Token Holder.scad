@@ -17,7 +17,7 @@ extraRaiseZ=5;
 scaleBy=1.7;
 
 raisedBy=(tkDiam-tkMinHeight)/2;
-scale([1.3,1.3,1.3])
+scale([1.1,1.1,1.1])
 	minkowski() {	
 		difference() {
 			translate([0,0,0-(scaleBy*extraZ)])
