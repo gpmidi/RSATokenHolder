@@ -9,7 +9,7 @@ tkChainX=10;
 tkChainY=8;
 tkChainZ=6;
 
-angle=40;
+angle=30;
 extraWidth=6;
 extraHeight=10;
 extraZ=10;
