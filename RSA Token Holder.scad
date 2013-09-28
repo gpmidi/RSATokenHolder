@@ -55,8 +55,14 @@ scale([overallScaleBy,overallScaleBy,overallScaleBy])
 						}
 				
 				// Extra bottom of main block
-				translate([0,20,extraZ-(tkMaxThickness+extraRaiseZ)])
-					cube([extraWidth+tkWidth,20,extraZ+3]);
+				if(angle <= 30) {
+					translate([0,20,extraZ-(tkMaxThickness+extraRaiseZ)])
+						cube([extraWidth+tkWidth,30,extraZ+7]);
+				}
+				if(angle > 30) {
+					translate([0,12,extraZ-(tkMaxThickness+extraRaiseZ)])
+						cube([extraWidth+tkWidth,30,extraZ+7]);
+				}
 			}
 			// Cut off the bottom; make it flat
 			translate([-20,-20,0-(tkMaxThickness+extraZ+extraRaiseZ)])
