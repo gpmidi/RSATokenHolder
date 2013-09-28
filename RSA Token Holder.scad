@@ -1,6 +1,6 @@
 tkWidth=60;
-tkMinHeight=20;
-tkDiam=28;
+tkMinHeight=24;
+tkDiam=34;
 tkThickness=9.5;
 tkMaxThickness=10.5;
 
@@ -17,6 +17,8 @@ extraRaiseZ=5;
 scaleBy=1.7;
 
 raisedBy=(tkDiam-tkMinHeight)/2;
+
+
 scale([1.1,1.1,1.1])
 	minkowski() {	
 		difference() {
@@ -48,7 +50,7 @@ scale([1.1,1.1,1.1])
 								}
 							}
 					}
-		
+			
 		
 			// Angle
 			translate([-20,-20,0-(tkMaxThickness+extraZ+extraRaiseZ)])
