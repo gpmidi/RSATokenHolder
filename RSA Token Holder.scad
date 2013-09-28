@@ -9,6 +9,7 @@ tkChainX=10;
 tkChainY=8;
 tkChainZ=6;
 
+angle=40;
 extraWidth=6;
 extraHeight=10;
 extraZ=10;
@@ -25,7 +26,7 @@ scale([overallScaleBy,overallScaleBy,overallScaleBy])
 		difference() {
 			union() {
 				translate([0,0,0-(scaleBy*extraZ)])
-					rotate([30,0,0])
+					rotate([angle,0,0])
 						difference() {
 							cube([extraWidth+tkWidth,extraHeight+tkDiam,tkMaxThickness+extraZ]);
 			
