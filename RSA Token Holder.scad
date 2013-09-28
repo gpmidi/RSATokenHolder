@@ -4,12 +4,18 @@ tkDiam=34;
 tkThickness=9.5;
 tkMaxThickness=10.5;
 
+// Size of the foot pad spots
+padIndentX=21;
+padIndentY=8;
+padIndentDepth=.5;
+padEdge=3;
+
 // Where the token's keychain connection is
 tkChainX=10;
 tkChainY=8;
 tkChainZ=6;
 
-angle=30;
+angle=40;
 extraWidth=6;
 extraHeight=10;
 extraZ=10;
@@ -20,6 +26,9 @@ overallScaleBy=1.07;
 
 raisedBy=(tkDiam-tkMinHeight)/2;
 
+xEnd=extraWidth+tkWidth;
+yBegin=-8;
+yEnd=32;
 
 scale([overallScaleBy,overallScaleBy,overallScaleBy])
 	minkowski() {	
@@ -69,8 +78,22 @@ scale([overallScaleBy,overallScaleBy,overallScaleBy])
 				cube([100,100,tkMaxThickness+extraZ]);
 
 			// Cut off the back
-			translate([-1,32,extraZ-(tkMaxThickness+extraRaiseZ)])
+			translate([-1,yEnd,extraZ-(tkMaxThickness+extraRaiseZ)])
 				cube([101,100,100]);
+
+			// Spots for sticky pads to be attached as feet
+			translate([0+padEdge,0+padEdge+yBegin,0-(extraRaiseZ+0.001)])
+				cube([padIndentX,padIndentY,padIndentDepth]);
+
+			translate([xEnd-padIndentX-padEdge,0+padEdge+yBegin,0-(extraRaiseZ+0.001)])
+				cube([padIndentX,padIndentY,padIndentDepth]);
+
+			translate([0+padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
+				cube([padIndentX,padIndentY,padIndentDepth]);
+
+			translate([xEnd-padIndentX-padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
+				cube([padIndentX,padIndentY,padIndentDepth]);
+
 		}
 		sphere(2);
 	}
