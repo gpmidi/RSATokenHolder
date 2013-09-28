@@ -5,8 +5,8 @@ tkThickness=9.5;
 tkMaxThickness=10.5;
 
 // Size of the foot pad spots
-padIndentX=21;
-padIndentY=8;
+padIndentX=23;
+padIndentY=11;
 padIndentDepth=.5;
 padEdge=3;
 
@@ -15,7 +15,7 @@ tkChainX=10;
 tkChainY=8;
 tkChainZ=6;
 
-angle=40;
+angle=30;
 extraWidth=6;
 extraHeight=10;
 extraZ=10;
