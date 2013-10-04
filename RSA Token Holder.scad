@@ -30,8 +30,15 @@ xEnd=extraWidth+tkWidth;
 yBegin=-8;
 yEnd=32;
 
+labelText="By GpMidi";
+labelScale=0.6;
+labelBuff=padIndentX/4;
+labelDepth=.5;
+
+include <TextGenerator.scad>
+
 scale([overallScaleBy,overallScaleBy,overallScaleBy])
-	minkowski() {	
+//	minkowski() {	
 		difference() {
 			union() {
 				translate([0,0,0-(scaleBy*extraZ)])
@@ -94,6 +101,12 @@ scale([overallScaleBy,overallScaleBy,overallScaleBy])
 			translate([xEnd-padIndentX-padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
 				cube([padIndentX,padIndentY,padIndentDepth]);
 
+			// Label
+			translate([xEnd-padIndentX-padEdge-labelBuff,yEnd-padEdge,0-(extraRaiseZ+0.001)+labelDepth])
+				scale([labelScale,labelScale,labelScale])
+					rotate([0,180,90])
+						drawtext(labelText);
+
 		}
-		sphere(2);
-	}
+//		sphere(2);
+//	}
