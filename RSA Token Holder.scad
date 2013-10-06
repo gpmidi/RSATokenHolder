@@ -15,8 +15,10 @@ tkChainX=10;
 tkChainY=8;
 tkChainZ=6;
 
-//angle=30;
-angle=40;
+// Display angle
+//angle=30;	// Normal
+angle=40;	// Steep
+
 extraWidth=6;
 extraHeight=10;
 extraZ=10;
@@ -35,6 +37,10 @@ labelText="By GpMidi";
 labelScale=tkWidth*0.10;
 labelDepth=.6;
 
+label2Text="0123456890123456";
+label2Height=len(label2Text)/5.2;
+label2Depth=.6;
+
 include <write.scad>
 
 // The holder!
@@ -46,8 +52,28 @@ difference() {
 					translate([0,0,0-(scaleBy*extraZ)])
 						rotate([angle,0,0])
 							difference() {
+								// Main body
 								cube([extraWidth+tkWidth,extraHeight+tkDiam,tkMaxThickness+extraZ]);
-				
+								
+								// Label
+								writecube(
+									label2Text,
+									where=[
+										tkDiam+raisedBy*2+extraWidth/2,
+										(extraHeight+tkDiam)-raisedBy,
+										(tkMaxThickness+extraZ-labelDepth)/2
+									],
+									size=[
+										(extraWidth-tkWidth),
+										raisedBy,
+										tkMaxThickness+extraZ
+									],
+									face="top",
+									center=true,
+									h=label2Height,
+									t=label2Depth
+									);
+
 								// Token holder spot
 								translate([
 										tkDiam/2+extraWidth/2,
@@ -57,7 +83,7 @@ difference() {
 										translate([-tkDiam/2-tkChainX,tkDiam/2-tkChainY/2-0.9,tkChainZ/4])
 											cube([tkChainX+1,tkChainY,tkChainZ]);
 										resize([tkWidth,tkDiam,tkMaxThickness]) {
-											minkowski() {
+											//minkowski() {
 												union() {
 													translate([0,tkDiam/2,0])
 														cylinder(tkThickness,tkDiam/2,tkDiam/2);
@@ -66,8 +92,8 @@ difference() {
 													translate([0,tkDiam/2,tkThickness])
 														cylinder(tkMaxThickness-tkThickness,tkDiam/2,tkDiam/5);
 												}
-												sphere(1);
-											}
+											//	sphere(1);
+											//}
 										}
 									}
 							}
