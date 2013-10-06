@@ -71,7 +71,7 @@ difference() {
 									face="top",
 									center=true,
 									h=label2Height,
-									t=label2Depth
+									t=label2Depth+0.01
 									);
 
 								// Token holder spot
