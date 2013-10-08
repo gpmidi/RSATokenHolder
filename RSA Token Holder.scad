@@ -41,12 +41,17 @@ label2Text="NnNnNnNnNnNnNn";
 label2Height=len(label2Text)/3.8;
 label2Depth=4.5;
 
+label3Text="NnNnNnNnNnNnNnNnNn";
+label3Height=5;  //len(label2Text)/3.8;
+label3Width=len(label3Text)*(.125* label3Height *5.5);
+label3Depth=4.5;
+
 include <write.scad>
 
 // The holder!
 difference() {
 	scale([overallScaleBy,overallScaleBy,overallScaleBy]) 
-		minkowski() {	
+//		minkowski() {	
 			difference() {
 				union() {
 					translate([0,0,0-(scaleBy*extraZ)])
@@ -55,7 +60,7 @@ difference() {
 								// Main body
 								cube([extraWidth+tkWidth,extraHeight+tkDiam,tkMaxThickness+extraZ]);
 								
-								// Label
+								// Upper left label
 								writecube(
 									label2Text,
 									where=[
@@ -72,6 +77,25 @@ difference() {
 									center=true,
 									h=label2Height,
 									t=label2Depth+0.01
+									);
+
+								// Lower label
+								writecube(
+									label3Text,
+									where=[
+										label3Width/2+label3Height/4,
+										label3Height/1.7,
+										(tkMaxThickness+extraZ-labelDepth)/2
+									],
+									size=[
+										label3Width,
+										label3Height,
+										tkMaxThickness+extraZ
+									],
+									face="top",
+									center=true,
+									h=label3Height,
+									t=label3Depth+0.01
 									);
 
 								// Token holder spot
@@ -129,8 +153,8 @@ difference() {
 				translate([xEnd-padIndentX-padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
 					cube([padIndentX,padIndentY,padIndentDepth]);
 			}
-		sphere(2);
-		}
+//		sphere(2);
+//		}
 	// Label
 	scale([overallScaleBy,overallScaleBy,overallScaleBy])
 		translate([xEnd/2-labelScale/4,yEnd+yBegin-labelScale*2,extraRaiseZ-(scaleBy*extraZ)+labelDepth*2+labelScale-0.1])
