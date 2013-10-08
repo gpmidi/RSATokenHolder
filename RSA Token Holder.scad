@@ -33,13 +33,13 @@ xEnd=extraWidth+tkWidth;
 yBegin=-8;
 yEnd=32;
 
-labelText="By GpMidi";
+labelText="NnNnNnNn";
 labelScale=tkWidth*0.10;
 labelDepth=.6;
 
-label2Text="0123456890123456";
-label2Height=len(label2Text)/5.2;
-label2Depth=.6;
+label2Text="NnNnNnNnNnNnNn";
+label2Height=len(label2Text)/3.8;
+label2Depth=4.5;
 
 include <write.scad>
 
@@ -60,7 +60,7 @@ difference() {
 									label2Text,
 									where=[
 										tkDiam+raisedBy*2+extraWidth/2,
-										(extraHeight+tkDiam)-raisedBy,
+										(2+extraHeight+tkDiam)-raisedBy,
 										(tkMaxThickness+extraZ-labelDepth)/2
 									],
 									size=[
@@ -129,11 +129,11 @@ difference() {
 				translate([xEnd-padIndentX-padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
 					cube([padIndentX,padIndentY,padIndentDepth]);
 			}
-			sphere(2);
+		sphere(2);
 		}
 	// Label
 	scale([overallScaleBy,overallScaleBy,overallScaleBy])
-		translate([xEnd/2-labelScale/4,yEnd+yBegin-labelScale*2,extraRaiseZ-(scaleBy*extraZ)-labelDepth+labelScale])
+		translate([xEnd/2-labelScale/4,yEnd+yBegin-labelScale*2,extraRaiseZ-(scaleBy*extraZ)+labelDepth*2+labelScale-0.1])
 			rotate([0,180,90])
 				write(labelText,h=labelScale,t=labelDepth,center=true);
 }
