@@ -51,7 +51,7 @@ include <write.scad>
 // The holder!
 difference() {
 	scale([overallScaleBy,overallScaleBy,overallScaleBy]) 
-//		minkowski() {	
+		minkowski() {	
 			difference() {
 				union() {
 					translate([0,0,0-(scaleBy*extraZ)])
@@ -59,44 +59,6 @@ difference() {
 							difference() {
 								// Main body
 								cube([extraWidth+tkWidth,extraHeight+tkDiam,tkMaxThickness+extraZ]);
-								
-								// Upper left label
-								writecube(
-									label2Text,
-									where=[
-										tkDiam+raisedBy*2+extraWidth/2,
-										(2+extraHeight+tkDiam)-raisedBy,
-										(tkMaxThickness+extraZ-labelDepth)/2
-									],
-									size=[
-										(extraWidth-tkWidth),
-										raisedBy,
-										tkMaxThickness+extraZ
-									],
-									face="top",
-									center=true,
-									h=label2Height,
-									t=label2Depth+0.01
-									);
-
-								// Lower label
-								writecube(
-									label3Text,
-									where=[
-										label3Width/2+label3Height/4,
-										label3Height/1.7,
-										(tkMaxThickness+extraZ-labelDepth)/2
-									],
-									size=[
-										label3Width,
-										label3Height,
-										tkMaxThickness+extraZ
-									],
-									face="top",
-									center=true,
-									h=label3Height,
-									t=label3Depth+0.01
-									);
 
 								// Token holder spot
 								translate([
@@ -153,11 +115,55 @@ difference() {
 				translate([xEnd-padIndentX-padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
 					cube([padIndentX,padIndentY,padIndentDepth]);
 			}
-//		sphere(2);
-//		}
+		sphere(2);
+		}
+
 	// Label
 	scale([overallScaleBy,overallScaleBy,overallScaleBy])
 		translate([xEnd/2-labelScale/4,yEnd+yBegin-labelScale*2,extraRaiseZ-(scaleBy*extraZ)+labelDepth*2+labelScale-0.1])
 			rotate([0,180,90])
 				write(labelText,h=labelScale,t=labelDepth,center=true);
+
+	scale([overallScaleBy,overallScaleBy,overallScaleBy]) 
+		translate([0,0,0-(scaleBy*extraZ)])
+			rotate([angle,0,0])
+				union() {
+					// Upper left label
+					writecube(
+						label2Text,
+						where=[
+							tkDiam+raisedBy*2+extraWidth/2,
+							(2+extraHeight+tkDiam)-raisedBy,
+							(tkMaxThickness+extraZ-labelDepth)/2
+						],
+						size=[
+							(extraWidth-tkWidth),
+							raisedBy,
+							tkMaxThickness+extraZ
+						],
+						face="top",
+						center=true,
+						h=label2Height,
+						t=label2Depth+0.01
+						);
+	
+					// Lower label
+					writecube(
+						label3Text,
+						where=[
+							label3Width/2+label3Height/4,
+							label3Height/1.7,
+							(tkMaxThickness+extraZ-labelDepth)/2
+						],
+						size=[
+							label3Width,
+							label3Height,
+							tkMaxThickness+extraZ
+						],
+						face="top",
+						center=true,
+						h=label3Height,
+						t=label3Depth+0.01
+						);
+				}
 }
