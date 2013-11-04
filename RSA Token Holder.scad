@@ -4,6 +4,8 @@ tkDiam=34;
 tkThickness=9.5;
 tkMaxThickness=10.5;
 
+// Include indents for rubber feet? 0=No 1=Yes
+addPads=0;
 // Size of the foot pad spots
 padIndentX=23;
 padIndentY=11;
@@ -103,17 +105,19 @@ difference() {
 					cube([101,100,100]);
 	
 				// Spots for sticky pads to be attached as feet
-				translate([0+padEdge,0+padEdge+yBegin,0-(extraRaiseZ+0.001)])
-					cube([padIndentX,padIndentY,padIndentDepth]);
-	
-				translate([xEnd-padIndentX-padEdge,0+padEdge+yBegin,0-(extraRaiseZ+0.001)])
-					cube([padIndentX,padIndentY,padIndentDepth]);
-	
-				translate([0+padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
-					cube([padIndentX,padIndentY,padIndentDepth]);
-	
-				translate([xEnd-padIndentX-padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
-					cube([padIndentX,padIndentY,padIndentDepth]);
+				if (addPads == 1) {
+					translate([0+padEdge,0+padEdge+yBegin,0-(extraRaiseZ+0.001)])
+						cube([padIndentX,padIndentY,padIndentDepth]);
+		
+					translate([xEnd-padIndentX-padEdge,0+padEdge+yBegin,0-(extraRaiseZ+0.001)])
+						cube([padIndentX,padIndentY,padIndentDepth]);
+		
+					translate([0+padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
+						cube([padIndentX,padIndentY,padIndentDepth]);
+		
+					translate([xEnd-padIndentX-padEdge,yEnd-padIndentY-padEdge,0-(extraRaiseZ+0.001)])
+						cube([padIndentX,padIndentY,padIndentDepth]);
+				}
 			}
 		sphere(2);
 		}
